@@ -145,17 +145,13 @@ checks `/_stcore/health`. On `main` and `v*` tags it pushes to Docker Hub when
 - All logic lives in an installable package that the app merely calls; ruff is enforced by
   pre-commit hooks and by CI.
 
-## Notes on the port from the notebook
+## Notes
 
-- `basic_preprocess` now casts `userId` to an integer. The raw logs store it as **text** while
-  `example_submission.csv` uses integers, so `make_submission` matched nothing and returned a
-  submission of all zeros. The fake logs had integer ids, which hid the mismatch; two tests now
-  pin the behaviour on text ids.
-- `prepare_design_matrix` fixes `astype(str).fillna("missing")`, which never filled anything
-  because NaN had already become the string `"nan"`.
-- The HTTP-status block always emits `status_200/307/404`, keeping columns stable between train
-  and test; page counts no longer rely on a `Categorical` (pandas 3 deprecation). Oversampling
-  keeps the notebook's row order and per-model seeds (LR 42/2025, ET 100/303, KNN 200/404).
+- Porting the notebook surfaced a bug: `basic_preprocess` now casts `userId` to an integer,
+  because the raw logs store it as **text** while `example_submission.csv` uses integers, so
+  `make_submission` matched nothing and returned a submission of all zeros. The fake logs used
+  in testing had integer ids, which hid the mismatch — two tests now pin the behaviour on text
+  ids.
 - The app holds a large log once: only the ten needed columns are read, cleaned logs are cached
-  with `st.cache_resource` keyed by path and mtime, and `filter_logs` returns the frame itself
-  when no filter is active. A 1.35 M-row log loads in about 8 s, reruns in about 0.5 s.
+  with `st.cache_resource` keyed by path and modification time, and `filter_logs` returns the
+  frame itself when no filter is active.
