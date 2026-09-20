@@ -63,15 +63,9 @@ The sidebar path box, `CHURN_DATA_DIR` and `CHURN_MODEL_PATH` point the app at o
 The weights are chosen on the same out-of-fold predictions that score them, so the ensemble AUC
 is slightly optimistic; with 16 candidate pairs the bias is small.
 
-The app flags the churn rate it measures on the training log, which balances precision against
-recall and lands within 0.005 F1 of the optimum:
-
-| Flagged | Precision | Recall | F1 |
-| --- | --- | --- | --- |
-| 20 % | 68.0 % | 60.9 % | 0.643 |
-| **22.3 %** (the app's default) | **65.6 %** | **65.4 %** | 0.655 |
-| 25 % | 62.4 % | 69.9 % | **0.659** |
-| 50 % | 40.7 % | 91.0 % | 0.562 |
+The app flags the churn rate it measures on the training log. Out of fold that puts precision
+and recall both near 66 %, within 0.005 F1 of the best cut-off available; flagging half the
+users instead would reach 91 % recall but only 41 % precision.
 
 ## Data
 
@@ -86,10 +80,8 @@ real thing:
   `userAgent` are dropped, so no personal data is committed;
 - drawn with `numpy.default_rng(42)`, so it can be rebuilt from the full logs.
 
-`models/model.joblib` is the vote trained on that extract, loaded at start-up. To use the full
-logs, point `CHURN_DATA_DIR` (or `make train DATA=…`) at a folder holding `train.parquet`,
-`test.parquet` and `example_submission.csv` with the columns `userId, sessionId, ts (epoch ms),
-page, level, gender, length, status, registration, time` — checked by `validate_schema`.
+`models/model.joblib` is the vote trained on that extract, loaded at start-up. Any folder with
+the same three files works instead; `validate_schema` checks them on load.
 
 ## Command line
 
