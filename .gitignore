@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# Tooling
+.pytest_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+.ipynb_checkpoints/
+
+# Data & artefacts: the committed extract and the model it trained are tracked,
+# never the full logs
+data/*
+!data/sample/
+submission*.csv
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/

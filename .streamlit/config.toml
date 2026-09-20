@@ -1,0 +1,18 @@
+[server]
+headless = true
+runOnSave = true
+
+[client]
+# Hide the developer / Print / Record items from the top-right menu.
+toolbarMode = "minimal"
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+base = "dark"
+primaryColor = "#1ED760"
+backgroundColor = "#101512"
+secondaryBackgroundColor = "#1A221D"
+textColor = "#E8EFEA"
+font = "sans serif"
