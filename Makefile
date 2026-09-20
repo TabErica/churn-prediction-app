@@ -1,4 +1,4 @@
-IMAGE ?= $(shell echo $${DOCKERHUB_USERNAME:-taberica})/churn-radar
+IMAGE ?= $(shell echo $${DOCKERHUB_USERNAME:-ziqimeng0128})/churn-radar
 TAG   ?= latest
 DATA  ?= data/sample      # override to run on the full logs: make train DATA=path/to/logs
 

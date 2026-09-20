@@ -1,7 +1,7 @@
 # 🎧 Churn Radar — churn prediction for a music-streaming service
 
 [![CI](https://github.com/TabErica/churn-prediction-app/actions/workflows/ci.yml/badge.svg)](https://github.com/TabErica/churn-prediction-app/actions/workflows/ci.yml)
-[![Docker Hub](https://img.shields.io/badge/docker-taberica%2Fchurn--radar-blue)](https://hub.docker.com/r/taberica/churn-radar)
+[![Docker Hub](https://img.shields.io/badge/docker-ziqimeng0128%2Fchurn--radar-blue)](https://hub.docker.com/r/ziqimeng0128/churn-radar)
 
 A Streamlit app, packaged in Docker, that predicts which listeners of a music-streaming service
 are about to cancel their subscription — from their event logs alone (songs played, thumbs
@@ -11,7 +11,7 @@ repository turns it into a tested Python package, an interactive app and a conta
 ## Quick start
 
 ```bash
-docker run --rm -p 8501:8501 taberica/churn-radar:latest    # then open localhost:8501
+docker run --rm -p 8501:8501 ziqimeng0128/churn-radar:latest    # then open localhost:8501
 ```
 
 The image ships a data extract and a trained model, so the dashboard works straight away. Or
