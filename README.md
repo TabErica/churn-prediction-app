@@ -132,7 +132,7 @@ make test           # 46 tests, ~99 % coverage
   (no-data screen, default load, scoring, missing model, unreadable files).
 
 Tests run on fake logs from `tests/fake_logs.py`, never on the competition data. CI runs ruff,
-then pytest on Python 3.11 and 3.12 behind a coverage gate of 85 %, then builds the image and
+then pytest on Python 3.12 behind a coverage gate of 85 %, then builds the image and
 checks `/_stcore/health`. On `main` and `v*` tags it pushes to Docker Hub when
 `DOCKERHUB_USERNAME` / `DOCKERHUB_TOKEN` are set.
 
